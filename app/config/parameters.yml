@@ -2,11 +2,11 @@
 parameters:
     database_host: 127.0.0.1
     database_port: null
-    database_name: symfony
+    database_name: sfdemo
     database_user: root
-    database_password: null
+    database_password: root
     mailer_transport: smtp
     mailer_host: 127.0.0.1
-    mailer_user: null
+    mailer_user: dev.ashurai@gmail.com
     mailer_password: null
     secret: 2e6b0ca2a56dbd13bdfb6dcddee7871da0bb1b16
