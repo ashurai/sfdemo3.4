@@ -1,0 +1,25 @@
+services:
+#    app_bundle.example:
+#        class: AppBundle\Controller\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    ####################################################################################################
+    # Service
+    ####################################################################################################
+
+    medlab.manager.user:
+        public:        true
+        autowire:      true
+        autoconfigure: false
+        class:  AppBundle\Manager\UserManager
+        arguments:
+            - '@fos_user.user_manager'
+            - '@fos_user.util.user_manipulator'
+            - '@fos_user.util.token_generator'
+        calls:
+            - [setEm,            ["@doctrine.orm.entity_manager"]]
+            - [setValidator,     ["@validator"]]
+            - [setEventDispatcher, ["@event_dispatcher"]]
+            - [setSession,       ["@session"]]
+            - [setSecurity,      ["@security.token_storage"]]
+            - [setSessidName,    ["%php_sessid_prefix%", "%php_sessid_name%"]]
