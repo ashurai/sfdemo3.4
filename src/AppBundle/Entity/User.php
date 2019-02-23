@@ -1,21 +1,22 @@
 <?php
-namespace MedlabMG\MedlabBundle\Entity;
+namespace AppBundle\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
-use MedlabMG\MedlabBundle\Entity\Constraint\InvalidUsername;
-use MedlabMG\MedlabBundle\Entity\Constraint\MedicalIdentity;
-use MedlabMG\MedlabBundle\Entity\Constraint\Username;
+use AppBundle\Entity\Constraint\InvalidUsername;
+use AppBundle\Entity\Constraint\MedicalIdentity;
+use AppBundle\Entity\Constraint\Username;
 use phpDocumentor\Reflection\Types\Boolean;
 use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as Serializer;
-use MedlabMG\MedlabBundle\Entity\Constraint\PasswordStrong;
-use MedlabMG\MedlabBundle\Entity\Constraint\MailDisposableDomain;
-use MedlabMG\MedlabBundle\Entity\Constraint\InvalidDNS;
+use AppBundle\Entity\Constraint\PasswordStrong;
+use AppBundle\Entity\Constraint\MailDisposableDomain;
+use AppBundle\Entity\Constraint\InvalidDNS;
 /**
  * User
  *
@@ -31,7 +32,7 @@ use MedlabMG\MedlabBundle\Entity\Constraint\InvalidDNS;
  *          @ORM\Index(name="idx_fos_user_platform1", columns={"platform_id"})
  *     }
  * )
- * @ORM\Entity(repositoryClass="MedlabMG\MedlabBundle\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @ORM\HasLifecycleCallbacks()
  *
  * @UniqueEntity("username", groups={"Default", "Username"})
@@ -39,7 +40,7 @@ use MedlabMG\MedlabBundle\Entity\Constraint\InvalidDNS;
  *
  *
  * @Serializer\ExclusionPolicy("all")
- * @Gedmo\Loggable(logEntryClass="MedlabMG\MedlabBundle\Entity\Logs\LogsUser")
+ * @Gedmo\Loggable(logEntryClass="AppBundle\Entity\Logs\LogsUser")
  */
 class User extends BaseUser
 {
@@ -213,9 +214,9 @@ class User extends BaseUser
      */
     protected $profile;
     /**
-     * @var \MedlabMG\MedlabBundle\Entity\Country
+     * @var \AppBundle\Entity\Country
      *
-     * @ORM\ManyToOne(targetEntity="MedlabMG\MedlabBundle\Entity\Country")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Country")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      * })
@@ -229,9 +230,9 @@ class User extends BaseUser
      */
     protected $country;
     /**
-     * @var \MedlabMG\MedlabBundle\Entity\Platform
+     * @var \AppBundle\Entity\Platform
      *
-     * @ORM\ManyToOne(targetEntity="MedlabMG\MedlabBundle\Entity\Platform")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Platform")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="platform_id", referencedColumnName="id")
      * })
